@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS `genero`;
+
+CREATE TABLE `genero` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
 INSERT INTO `genero` (`id`, `nombre`)
 VALUES
 	(1,'Action'),
@@ -15,6 +23,13 @@ VALUES
 	(13,'Sci-Fi'),
 	(14,'Short'),
 	(15,'Thriller');
+
+ALTER TABLE pelicula 
+	ADD `genero_id` INT;
+ALTER TABLE pelicula 
+	ADD CONSTRAINT `genero_id_fk` 
+	FOREIGN KEY (`genero_id`)
+	REFERENCES genero(`id`);
 
 UPDATE pelicula SET pelicula.genero_id =6 WHERE pelicula.id =1;
 UPDATE pelicula SET pelicula.genero_id =5 WHERE pelicula.id =2;

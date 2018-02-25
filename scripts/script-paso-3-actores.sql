@@ -1,4 +1,29 @@
+DROP TABLE IF EXISTS `actor`;
 
+CREATE TABLE `actor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(70) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+DROP TABLE IF EXISTS `actor_pelicula`;
+
+CREATE TABLE `actor_pelicula` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `actor_id` INT NULL,
+  `pelicula_id` INT NULL,
+  PRIMARY KEY (`id`)
+);
+
+ALTER TABLE actor_pelicula 
+	ADD CONSTRAINT `actor_id_fk` 
+	FOREIGN KEY (`actor_id`)
+	REFERENCES actor(`id`);
+
+ALTER TABLE actor_pelicula 
+	ADD CONSTRAINT `pelicula_id_fk` 
+	FOREIGN KEY (`pelicula_id`)
+	REFERENCES pelicula(`id`);
 
 INSERT INTO `actor` (`id`, `nombre`)
 VALUES
